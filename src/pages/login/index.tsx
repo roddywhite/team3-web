@@ -1,4 +1,5 @@
 import { useState, useEffect, ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
@@ -6,11 +7,11 @@ import { Wrapper, Container, H1, Input, H3 } from './login.styled';
 import LoginButton from './components/login-button/index';
 import kakao from '../../assets/kakao.svg';
 import waffle from '../../assets/waffle.svg';
-import github from '../../assets/github.svg';
 import profile from '../../assets/profile.svg';
 import google from '../../assets/google.svg';
 
 const LoginPage = () => {
+  /* DESC: email & pw inputs 관리 */
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -22,8 +23,6 @@ const LoginPage = () => {
       ...inputs,
       [name]: value,
     });
-    console.log(inputs);
-    console.log(value, name);
   };
 
   /* DESC: 카카오 로그인하기 - 외부 링크로 이동해 동의하면 redirect page 쿼리로 인가코드 보내줌 */
@@ -33,7 +32,7 @@ const LoginPage = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
 
-  /* DESC: 구글 로그인 - gapi로 client(waffle-market) initialize */
+  /* DESC: 구글 로그인 - gapi로 client(waffle-market) initialize(초기화) */
   const googleClientId: any = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   const GOOGLE_REDIRECT_URI = 'http://localhost:3000/login/google';
   const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientId}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`;
@@ -50,6 +49,7 @@ const LoginPage = () => {
     gapi.load('client:auth2', initClient);
   }, []);
   const onSuccess = (res: any) => {
+    // 성공하면 email, 이름, tokenId 모두 전달해줌
     console.log('success:', res);
   };
   const onFailure = (err: any) => {
@@ -76,24 +76,15 @@ const LoginPage = () => {
         />
         <LoginButton img={waffle} text="로그인" bgColor="#FF9E66" />
         <H3>아직 회원이 아니세요?</H3>
-        <LoginButton
-          img={profile}
-          text="회원가입"
-          bgColor="#DCDEE3"
-          handleClick={linkToGoogle}
-        />
+        <Link to="/signup">
+          <LoginButton img={profile} text="회원가입" bgColor="#DCDEE3" />
+        </Link>
         <LoginButton
           img={kakao}
           text="카카오로 시작"
           bgColor="#FEE500"
           handleClick={linkToKakao}
         />
-        <div
-          data-client_id={googleClientId}
-          data-login_uri="https://localhost:3000/login/google"
-        >
-          구글
-        </div>
         <GoogleLogin
           clientId={googleClientId}
           render={renderProps => (
