@@ -9,7 +9,7 @@ interface LoginButton {
   handleClick?: () => void;
 }
 
-const LoginButton: React.FC<LoginButton> = ({
+const LoginButton = ({
   img,
   text,
   color,
