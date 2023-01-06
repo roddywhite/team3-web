@@ -1,24 +1,15 @@
-import axios from 'axios';
+// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Gnb from '../../components/gnb';
 import { Wrapper } from './home.styled';
 
 const HomePage = () => {
-  // 백엔드와의 통신을 위한 테스트 api call
-  const test = () => {
-    axios.get('http://3.35.168.70/hello').then(res => {
-      console.log(res);
-    });
-  };
   return (
     <Wrapper>
+      <Gnb />
       <a>홈페이지입니다</a>
-      <Link to="/login">
-        <a>로그인</a>
-      </Link>
-      <Link to="/signup">
-        <a>회원가입</a>
-      </Link>
-      <button onClick={test}>백엔드 통신 테스트</button>
+      <Link to="/login">로그인</Link>
+      <Link to="/signup">회원가입</Link>
     </Wrapper>
   );
 };
