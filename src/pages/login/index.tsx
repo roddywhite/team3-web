@@ -1,16 +1,20 @@
 import { useState, useEffect, ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
-import { Wrapper, Container, H1, Input, H3 } from './login.styled';
+import Gnb from '../../components/gnb';
+import { Wrapper, Container, Title, H1, Input, H3 } from './login.styled';
 import LoginButton from './components/login-button/index';
+import carrot from '../../assets/carrot.svg';
+import logoImg from '../../assets/logo.svg';
 import kakao from '../../assets/kakao.svg';
 import waffle from '../../assets/waffle.svg';
 import profile from '../../assets/profile.svg';
 import google from '../../assets/google.svg';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   /* DESC: email & pw inputs 관리 */
   const [inputs, setInputs] = useState({
     email: '',
@@ -51,6 +55,16 @@ const LoginPage = () => {
   const onSuccess = (res: any) => {
     // 성공하면 email, 이름, tokenId 모두 전달해줌
     console.log('success:', res);
+    const email = res.profileObj.email
+    axios
+      .post(`http://3.35.168.70/google/login/?email=${email}`)
+      .then(response => {
+        console.log(response);
+        navigate('/');
+      })
+      .catch(err => {
+        throw err;
+      });
   };
   const onFailure = (err: any) => {
     console.log('failed:', err);
@@ -58,8 +72,10 @@ const LoginPage = () => {
 
   return (
     <Wrapper>
+      <Gnb />
       <Container>
-        <H1>와플마켓에 로그인하세요</H1>
+        <Title src={logoImg} />
+        {/* <H1>와플마켓에 로그인하세요</H1> */}
         <Input
           name="email"
           value={email}
