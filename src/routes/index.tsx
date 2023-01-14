@@ -6,6 +6,7 @@ import LoginPage from '../pages/login';
 import KaKaoLogin from '../pages/login/kakao';
 import ProfilePage from '../pages/profile';
 import MarketPage from '../pages/market';
+import SendReview from '../pages/sendReview';
 import TradePostPage from '../pages/trade-post';
 import ChatPage from '../pages/chat';
 
@@ -20,6 +21,7 @@ function EntryRoute() {
         <Route path="/login/kakao" element={<KaKaoLogin />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/market" element={<MarketPage />} />
+        <Route path="/review" element={<SendReview />} />
         <Route path="/tradepost/:id" element={<TradePostPage />} />
         <Route path="/chat/:id" element={<ChatPage />} />
       </Routes>
