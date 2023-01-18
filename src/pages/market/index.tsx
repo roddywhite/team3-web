@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ShortCut from './components/shortcut';
 import { Wrapper, Header, Intro, List } from './market.styled';
 import Gnb from '../../components/gnb';
@@ -12,9 +12,54 @@ import sample4 from '../../assets/product-sample-4.jpeg';
 import sample5 from '../../assets/product-sample-5.jpeg';
 import sample6 from '../../assets/product-sample-6.jpeg';
 
+import { redirectWithMsg } from '../../utils/errors';
+import { getTradePostList } from '../../store/slices/market';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import axios from 'axios';
+
 const MarketPage = () => {
+  const dispatch = useAppDispatch();
+  const { accessToken } = useAppSelector(state => state.session);
   const [keyword, setKeyword] = useState<string>('');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<string | null>(null);
+
+  useEffect(() => {
+    axios
+      .get('http://3.37.61.115/tradepost?keyword=aa')
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     dispatch(getTradePostList({ accessToken, }))
+  //       .unwrap()
+  //       .then(() => {
+  //         setDataLoading(false);
+  //       })
+  //       .catch(err => {
+  //         if (axios.isAxiosError(err)) {
+  //           if (err.response?.status === 404) {
+  //             redirectWithMsg(2, err.response?.data.error, () => navigate(-1));
+  //           } else if (err.response?.status === 401) {
+  //             // TODO: refresh 후 재요청
+  //             redirectWithMsg(2, err.response?.data.error, () =>
+  //               navigate('/login'),
+  //             );
+  //           } else {
+  //             redirectWithMsg(2, '요청을 수행할 수 없습니다.', () =>
+  //               navigate('/'),
+  //             );
+  //           }
+  //         }
+  //       });
+  //   }
+  // }, [accessToken, postId]);
+
   const searchHandler = () => {
     console.log(keyword);
   };
