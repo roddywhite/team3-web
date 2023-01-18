@@ -23,7 +23,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample6}
             title={'당근 팔아요'}
-            tradeStatus="onSale"
+            tradeStatus="TRADING"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -33,7 +33,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample5}
             title={'당근 팔아요 맛이 정말 좋아요 직접 키웠어요'}
-            tradeStatus="onSale"
+            tradeStatus="TRADING"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -43,7 +43,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample2}
             title={'아이폰 13프로 미개봉 새상품 팝니다(네고안됨)'}
-            tradeStatus="booked"
+            tradeStatus="RESERVATION"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -53,7 +53,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample}
             title={'패딩 팝니다 3년 입었어요'}
-            tradeStatus="onSale"
+            tradeStatus="TRADING"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -63,7 +63,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample3}
             title={'와플 기계 팝니다 거의 새거입니다'}
-            tradeStatus="sold"
+            tradeStatus="COMPLETED"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -73,7 +73,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample4}
             title={'당근 팔아요'}
-            tradeStatus="booked"
+            tradeStatus="RESERVATION"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -83,7 +83,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample5}
             title={'당근 팔아요'}
-            tradeStatus="onSale"
+            tradeStatus="TRADING"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -93,7 +93,7 @@ const MarketPage = () => {
           <ShortCut
             img={sample6}
             title={'당근와플 중고제품 팔아요 맛있어요 한 입만 먹었어요'}
-            tradeStatus="onSale"
+            tradeStatus="TRADING"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
@@ -103,7 +103,7 @@ const MarketPage = () => {
           <ShortCut
             img={carrot}
             title={'당근 팔아요'}
-            tradeStatus="onSale"
+            tradeStatus="TRADING"
             price={4000}
             location={'관악구 행운동'}
             likes={5}
