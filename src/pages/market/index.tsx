@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ShortCut from './components/shortcut';
 import { Wrapper, Header, Intro, List } from './market.styled';
 import Gnb from '../../components/gnb';
@@ -12,12 +13,20 @@ import sample5 from '../../assets/product-sample-5.jpeg';
 import sample6 from '../../assets/product-sample-6.jpeg';
 
 const MarketPage = () => {
+  const [keyword, setKeyword] = useState<string>('');
+  const searchHandler = () => {
+    console.log(keyword)
+  }
   return (
     <>
       <Gnb />
       <Wrapper>
         <Header>
-          <SearchBar />
+          <SearchBar
+            keyword={keyword}
+            setKeyword={setKeyword}
+            searchClick={searchHandler}
+          />
         </Header>
         <List>
           <ShortCut
