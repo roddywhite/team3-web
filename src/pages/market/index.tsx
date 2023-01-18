@@ -14,9 +14,10 @@ import sample6 from '../../assets/product-sample-6.jpeg';
 
 const MarketPage = () => {
   const [keyword, setKeyword] = useState<string>('');
+  const [data, setData] = useState(null);
   const searchHandler = () => {
-    console.log(keyword)
-  }
+    console.log(keyword);
+  };
   return (
     <>
       <Gnb />
@@ -29,6 +30,19 @@ const MarketPage = () => {
           />
         </Header>
         <List>
+          {/* {data.map(shortcut => {
+            return (
+              <ShortCut
+                img={data.imageUrls}
+                title={data.title}
+                tradeStatus={data.tradeStatus}
+                price={data.price}
+                location={data.seller.location}
+                likes={data.likeCount}
+                chats={data.view}
+              />
+            );
+          })} */}
           <ShortCut
             img={sample6}
             title={'당근 팔아요'}
